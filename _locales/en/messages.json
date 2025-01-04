@@ -1,0 +1,23 @@
+{
+  "name": {
+    "message": "Contrast checker"
+  },
+  "description": {
+    "message": "The contrast checker shows a heatmap of the contrast ratio between the middle and surrounding pixels."
+  },
+  "label_str": {
+    "message": "Contrast ratio:"
+  },
+  "label_times": {
+    "message": ""
+  },
+  "label_default": {
+    "message": "Default"
+  },
+  "label_save": {
+    "message": "Apply"
+  },
+  "label_compensation": {
+    "message": "Compensation for OS-level Display Scaling:"
+  }
+}

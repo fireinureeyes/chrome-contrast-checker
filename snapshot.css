@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+}
+
+.magnify{
+    position: absolute;
+}
+
+.large{
+    position: absolute;
+    display: none;
+    cursor: none;
+    outline: none;
+}
+
+.small {
+    display: block;
+}
