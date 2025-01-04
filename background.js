@@ -2,9 +2,10 @@
 var id = 100;
 
 // Listen for a click on browser action icon
-chrome.browserAction.onClicked.addListener(function(theTab) {
+chrome.action.onClicked.addListener(function(theTab) {
+    console.log("Clicked on the icon");
 
-    chrome.storage.sync.get({
+    chrome.storage.local.get({
         magnifierStrength: 3,
         magnifierStrength2: 4.5,
         magnifierSize: 200,
@@ -20,7 +21,7 @@ chrome.browserAction.onClicked.addListener(function(theTab) {
             }
             // Capture the image in loseless format
             chrome.tabs.captureVisibleTab({format: "png"}, function(screenshotUrl) {
-                var viewTabUrl = chrome.extension.getURL('snapshot.html?id=' + id++)
+                var viewTabUrl = chrome.runtime.getURL('snapshot.html?id=' + id++)
                 var targetId = null;
 
                 chrome.tabs.onUpdated.addListener(function listener(tabId, changedProps) {
@@ -49,9 +50,9 @@ chrome.browserAction.onClicked.addListener(function(theTab) {
         } else {
             // Capture the current viewport
             chrome.tabs.captureVisibleTab({format: "png"}, function(screenshotUrl) {
-                chrome.tabs.insertCSS(theTab.id, {file: "snapshot2.css"}, function () {
-                    chrome.tabs.executeScript(theTab.id, {file: "jquery-3.2.1.min.js"}, function () {
-                        chrome.tabs.executeScript(theTab.id, {file: "magnifying-glass.js"}, function () {
+                chrome.scripting.insertCSS({target: {tabId: theTab.id}, files: ["snapshot2.css"]}, function () {
+                    chrome.scripting.executeScript({target: {tabId: theTab.id}, files: ["jquery-3.2.1.min.js"]}, function () {
+                        chrome.scripting.executeScript({target: {tabId: theTab.id}, files: ["magnifying-glass.js"]}, function () {
                             chrome.tabs.getZoom(theTab.id, function(zoomFactor){
                                 chrome.tabs.sendMessage(theTab.id, {
                                     snapshot_url: screenshotUrl, magnifier_str: items.magnifierStrength, magnifier_str2: items.magnifierStrength2,

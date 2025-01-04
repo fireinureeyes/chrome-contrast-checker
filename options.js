@@ -1,7 +1,8 @@
-// Save options to chrome.storage.sync.
+// Save options to chrome.storage.local.
 function save_options() {
     var magStr = document.getElementById('strength').value;
-    chrome.storage.sync.set({
+    var magStr2 = document.getElementById('strength2').value;
+    chrome.storage.local.set({
         magnifierStrength: magStr,
         magnifierStrength2: magStr2,
     }, function() {
@@ -20,7 +21,7 @@ function save_options() {
 
 // Restore data using the preferences stored in chrome.storage.
 function restore_options() {
-    chrome.storage.sync.get({
+    chrome.storage.local.get({
         magnifierStrength: 3,
         magnifierStrength2: 4.5,
         osFactor: 100,
@@ -33,7 +34,7 @@ function restore_options() {
 
 // Reset the preference to default values
 function reset_options(){
-    chrome.storage.sync.clear(function(){
+    chrome.storage.local.clear(function(){
         restore_options();
         var status = document.getElementById('status');
         status.textContent = 'Options reset.';
