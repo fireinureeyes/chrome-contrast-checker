@@ -8,3 +8,5 @@ The contrast checker shows a heatmap of the contrast ratio between the middle an
 </p>
 
 Press `Alt`+`Z` (`Ctrl`+`Z` on MAC) or click on it's icon to start the extension.
+
+https://chromewebstore.google.com/detail/contrast-checker/aoeiohkmdfiphajkciemghmbileppgke
